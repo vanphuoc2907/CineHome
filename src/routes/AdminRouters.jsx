@@ -14,6 +14,7 @@ import Like from '../pages/admin/Engagement_Pages/Likes/Like';
 import Comment from '../pages/admin/Engagement_Pages/Comment/Comment';
 import Author from '../pages/admin/Cast&Crew/Author/Author';
 import Character from '../pages/admin/Cast&Crew/Character/Character';
+import Userpages from '../pages/admin/Userpages/Userpages';
 
 function AdminRouters(props) {
     const routers = [
@@ -74,6 +75,11 @@ function AdminRouters(props) {
             path:"/actor",
             Component: <Actor/>
         },
+        {
+            path: "/userpages",
+            Component: <Userpages/>
+        },
+       
     ]
     return (
         <div className='p-3'>

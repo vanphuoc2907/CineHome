@@ -10,7 +10,7 @@ import { FaHeart } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
-function SlideMovie({ data, title }) {
+function SlideVip({ data, title }) {
     return (
         <div>
             <h1 className="text-xl text-white font-bold bg-black py-3 ps-3">{title}</h1>
@@ -36,7 +36,7 @@ function SlideMovie({ data, title }) {
                         <div className="relative group">
                             <div className="relative overflow-hidden w-full h-full">
                                 <img
-                                    className="object-cover h-[200px] transition-transform duration-300 ease-in-out transform hover:scale-110"
+                                    className="h-[500px] transition-transform duration-300 ease-in-out transform hover:scale-110"
                                     src={element.imgUrl}
                                     alt="#"
                                 />
@@ -65,4 +65,4 @@ function SlideMovie({ data, title }) {
     );
 }
 
-export default SlideMovie;
+export default SlideVip;

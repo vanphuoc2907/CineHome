@@ -17,6 +17,7 @@ import { EpisodesProvider } from './context/EpisodeProvider';
 import { TrailersProvider } from './context/TrailerProvider';
 import { AccountsProvider } from './context/AccountProvider';
 import AuthProvider from './context/AuthProvider';
+import { UserpagesProvider } from './context/UserpageProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -35,7 +36,9 @@ root.render(
                           <TrailersProvider>
                             <AccountsProvider>
                               <AuthProvider>
-                                <App />
+                                <UserpagesProvider>
+                                  <App />
+                                </UserpagesProvider>
                               </AuthProvider>
                             </AccountsProvider>
                           </TrailersProvider>

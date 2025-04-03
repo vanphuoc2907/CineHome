@@ -7,9 +7,7 @@ import {
   DialogContent,
   DialogTitle,
   FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
+  Autocomplete,
 } from "@mui/material";
 import { addDocument, updateDocument } from "../../../../services/firebaseService";
 import { useNotification } from "../../../../context/NotificationProvider";
@@ -40,25 +38,31 @@ function ModalTrailer({ handleClose, open, trailer, setTrailer, validation, erro
       <DialogTitle>{trailer.id ? "Edit trailer" : "Add trailer"}</DialogTitle>
       <DialogContent>
         <FormControl sx={{ mt: 1 }} fullWidth>
-          <InputLabel id="my-select-label">MOVIE ID</InputLabel>
-          <Select
-            labelId="my-select-label"
-            label="Chọn giá trị"
-            name='movieId'
-            value={trailer.movieId}
-            onChange={handleInput}
-            error={!!error.movieId}
-            helperText={error.movieId}
-          >
-            {movies
-              ?.slice() // Tạo bản sao để tránh thay đổi mảng gốc
-              .sort((a, b) => a.lever - b.lever) // Sắp xếp tăng dần theo lever
-              .map((row, index) => (
-                <MenuItem key={index} value={row.id}>
-                  {row.title}
-                </MenuItem>
-              ))}
-          </Select>
+            <Autocomplete
+                      className='mt-2'
+                      options={movies} // Danh sách các tác giả
+                      getOptionLabel={(option) => option.name} // Hiển thị tên của tác giả
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          label="Tìm kiếm hoặc chọn phim"
+                          error={!!error.idMovie}
+                          helperText={error.idMovie}
+                        />
+                      )}
+                      value={
+                        movies.find((trailer) => trailer.id === movies.idMovie) || null // Hiển thị giá trị đã chọn
+                      }
+                      onChange={(event, newValue) => {
+                        // Cập nhật giá trị khi người dùng chọn
+                        handleInput({
+                          target: { name: "idMovie", value: newValue ? newValue.id : "" },
+                        });
+                      }}
+                      isOptionEqualToValue={(option, value) => option.id === value.id} // So sánh giá trị
+                      noOptionsText="Không tìm thấy kết quả" // Thông báo khi không có kết quả
+                      fullWidth
+                    />
         </FormControl>
         <TextField
           margin="dense"
@@ -67,7 +71,6 @@ function ModalTrailer({ handleClose, open, trailer, setTrailer, validation, erro
           fullWidth
           multiline
           name="trailerURL"
-          rows={4}
           value={trailer.trailerURL}
           onChange={handleInput}
           error={!!error.trailerURL}

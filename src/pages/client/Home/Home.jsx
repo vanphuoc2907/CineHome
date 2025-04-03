@@ -3,6 +3,7 @@ import HeaderClient from '../../../components/client/HeaderClient';
 import ClientRouters from "../../../routes/ClientRouters"
 import LoginModal from '../Navbar/LoginModal';
 import SignUpModal from '../Navbar/SignUpModal';
+import Footer from '../Footer/Footer';
 function Home(props) {
      const [openLogin,setOpenLogin] = useState(false);
      const [openSignUp,setOpenSignUp] = useState(false);
@@ -26,6 +27,7 @@ function Home(props) {
              <ClientRouters/>
              <LoginModal openLogin={openLogin} handleCloseLogin={handleCloseLogin} handleOpenSignUp={handleOpenSignUp}/>
              <SignUpModal handleOpenLogin={handleOpenLogin} openSignUp={openSignUp} handleCloseSignUp={handleCloseSignUp} />
+             <Footer/>
         </div>
     );
 }

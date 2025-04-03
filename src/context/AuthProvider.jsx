@@ -7,18 +7,13 @@ function AuthProvider({ children }) {
 
 
     useEffect(() => {
-     setAccountLogin(getLocal("accountLogin"))
-    },[accountLogin]);
+     setAccountLogin(getLocal("accountLogin"));
+    },[]);
 
     const saveLocal = (key, value) => {
         try {
-            if (typeof value === "object") {
-                value = JSON.stringify(value);
-            }
-
-            // Mã hóa bằng AES
-            const encryptedValue = CryptoJS.AES.encrypt(value, SECRET_KEY).toString();
-
+           // Mã hóa bằng AES
+            const encryptedValue = CryptoJS.AES.encrypt(JSON.stringify(value), SECRET_KEY).toString();
             localStorage.setItem(key, encryptedValue);
             setAccountLogin(value);
         } catch (error) {

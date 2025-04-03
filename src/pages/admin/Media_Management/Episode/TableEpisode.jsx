@@ -73,7 +73,7 @@ function TableEpisode({ setEpisode, episode, handleEdit, search, setPage, page }
                             <StyledTableCell>#</StyledTableCell>
                             <StyledTableCell align="center">EpisodesNumber</StyledTableCell>
                             <StyledTableCell align="center">EpisodeURL</StyledTableCell>
-                            <StyledTableCell align="center">IdMovie</StyledTableCell>
+                            <StyledTableCell align="center">Movie</StyledTableCell>
                             <StyledTableCell align="center">Action</StyledTableCell>
                         </TableRow>
                     </TableHead>
@@ -85,7 +85,7 @@ function TableEpisode({ setEpisode, episode, handleEdit, search, setPage, page }
                                 </StyledTableCell>
                                 <StyledTableCell align="center">{row.episodesNumber}</StyledTableCell>
                                 <StyledTableCell align="center">{row.episodeURL}</StyledTableCell>
-                                <StyledTableCell align="center">{getObjectById(row.idMovie, movies)?.title}</StyledTableCell>
+                                <StyledTableCell align="center">{getObjectById(row.idMovie, movies)?.name}</StyledTableCell>
                                 <StyledTableCell align="center">
                                     <Button onClick={() => handleEdit(row)} variant="contained"><FaEdit /></Button>
                                     <Button onClick={() => handleDeleted(row)} sx={{ marginLeft: "10px" }} variant="contained" color="error"><RiDeleteBin5Fill /></Button>

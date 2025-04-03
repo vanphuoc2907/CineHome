@@ -19,12 +19,12 @@ export const menus = [
             {
                 id: 2,
                 title: "Episode",
-                path: "/Episode"
+                path: "/episode"
             },
             {
                 id: 3,
                 title: "Trailer",
-                path: "/Trailer"
+                path: "/trailer"
             }
         ]
     },
@@ -36,17 +36,17 @@ export const menus = [
             {
                 id: 1,
                 title: "Package",
-                path: "/Package"
+                path: "/package"
             },
             {
                 id: 2,
                 title: "Feature",
-                path: "/Feature"
+                path: "/feature"
             },
             {
                 id: 3,
                 title: "Plans",
-                path: "/Plans"
+                path: "/plans"
             }
         ]
     },
@@ -58,17 +58,17 @@ export const menus = [
             {
                 id: 1,
                 title: "Like ",
-                path: "/Like"
+                path: "/like"
             },
             {
                 id: 2,
                 title: "Watchlist ",
-                path: "/Watchlist  "
+                path: "/watchlist  "
             },
             {
                 id: 3,
                 title: "Comment",
-                path: "/Comment "
+                path: "/comment "
             }
         ]
     },
@@ -80,17 +80,17 @@ export const menus = [
             {
                 id: 1,
                 title: "Author",
-                path: "/Author"
+                path: "/author"
             },
             {
                 id: 2,
                 title: "Character",
-                path: "/Character"
+                path: "/character"
             },
             {
                 id: 3,
                 title: "Actor",
-                path: "/Actor"
+                path: "/actor"
             }
         ]
     }
@@ -121,3 +121,9 @@ export const  SECRET_KEY = "0337560890" ;
 export const logo  = logoImg ;
 export const cloudName = "dhmccpqj5";
 export const upload_preset = "cinehome" ;
+
+export const initialOptions = {
+    "client-id": "Ad_rS4a2dLwZ-V7_NRfwQ7dvuZG0pq6cSBm71cjRVP3XAuiR5VtmgNmS8hja5RriCQ1YVWLmAKRQAzZu",
+    currency: "USD",
+    intent: "capture"
+  };

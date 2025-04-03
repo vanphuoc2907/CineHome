@@ -19,8 +19,8 @@ function Categories(props) {
 
     const validation = () => {
         const newError = {} ;
-        newError.name = category.name ? "" : "Vui lòng nhập name" ;
-        newError.description = category.description ? "" : "Vui lòng nhập mô tả" ;
+        newError.name = category.name ? "" : "Please enter name" ;
+        newError.description = category.description ? "" : "Please enter description" ;
         setError(newError);
        return Object.values(newError).every(e => e === "") ;
     }

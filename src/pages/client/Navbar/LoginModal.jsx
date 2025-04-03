@@ -3,12 +3,14 @@ import { FaUser, FaLock, FaEye, FaEyeSlash, FaTimes, FaGoogle } from "react-icon
 import { Modal, Box, Typography, TextField, Button, IconButton, InputAdornment } from "@mui/material";
 import { ContextAccounts } from "../../../context/AccountProvider";
 import { ContextAuth } from "../../../context/AuthProvider";
+import { useNotification } from "../../../context/NotificationProvider";
 const inner = { useroremail: "", pass: '' }
 const LoginModal = ({ openLogin, handleCloseLogin, handleOpenSignUp }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [login, setLogin] = useState(inner);
   const [error, setError] = useState(inner);
   const accounts = useContext(ContextAccounts);
+  const showNotification = useNotification();
   const { accountLogin, saveLocal } = useContext(ContextAuth);
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
@@ -28,11 +30,15 @@ const LoginModal = ({ openLogin, handleCloseLogin, handleOpenSignUp }) => {
     if (!validation()) {
       return;
     }
-   const acclogin = accounts.find(e => e.password == login.pass && e.email == login.useroremail || e.username == login.useroremail);
-   if(acclogin) {
-    saveLocal("accountLogin",acclogin);
-   }
-   handleCloseLogin();
+    const acclogin = accounts.find(e => e.password == login.pass && e.email == login.useroremail || e.username == login.useroremail);
+    if (!acclogin) {
+      showNotification("Incorrect username or password","error");
+      handleCloseLogin();
+      return;
+    }
+    saveLocal("accountLogin", acclogin);
+    showNotification("Log in successfully","success");
+    handleCloseLogin();
   }
   return (
     <Modal open={openLogin} onClose={handleCloseLogin}>

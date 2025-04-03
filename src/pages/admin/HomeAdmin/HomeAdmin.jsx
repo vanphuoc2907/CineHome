@@ -7,7 +7,7 @@ function HomeAdmin(props) {
     return (
         <div className='md:flex'>
             <MenuAdmin/>
-            <div className='md:flex-1 md:h-screen md:overflow-scroll'>
+            <div className='md:flex-1 md:h-screen'>
                 <HeaderAdmin/>
                 <AdminRouters/>        
             </div>

@@ -6,9 +6,10 @@ import { ContextAuth } from './context/AuthProvider';
 
 function App() {
   const { accountLogin } = useContext(ContextAuth);
+  
   return (
     <>
-   <HomeAdmin/>
+    {accountLogin?.role === "admin" ? <HomeAdmin/> :  <Home/>  }
     </>
   );
 } 
