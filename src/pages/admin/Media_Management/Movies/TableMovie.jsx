@@ -171,6 +171,7 @@ function TableMovie({ setMovie, movie, handleEdit, search, setPage, page }) {
                 rowsPerPage={rowsPerPage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
             />
+             <ModalDelete open={open} handleClose={handleClose} onConfirm={onConfirm} />
         </>
     );
 }

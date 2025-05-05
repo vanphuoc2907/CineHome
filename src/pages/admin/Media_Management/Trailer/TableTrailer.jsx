@@ -41,7 +41,7 @@ function TableTrailer({ setTrailer, trailer, handleEdit, search, setPage, page }
     }
     const onConfirm = async () => {
         await deleteDocument("Trailers", trailer.id);
-        showNotification("Trailers  deleted successfully!", "error");
+        showNotification("trailers  deleted successfully!", "error");
         setOpen(false);
     };
     const handleDeleted = (item) => {
@@ -71,7 +71,7 @@ function TableTrailer({ setTrailer, trailer, handleEdit, search, setPage, page }
                     <TableHead>
                         <TableRow>
                             <StyledTableCell>#</StyledTableCell>
-                            <StyledTableCell align="center">MovieId</StyledTableCell>
+                            <StyledTableCell align="center">Movie</StyledTableCell>
                             <StyledTableCell align="center">TrailerURL</StyledTableCell>
                             <StyledTableCell align="center">Action</StyledTableCell>
                         </TableRow>
@@ -82,7 +82,7 @@ function TableTrailer({ setTrailer, trailer, handleEdit, search, setPage, page }
                                 <StyledTableCell component="th" scope="row">
                                     {page * 5 + index + 1}
                                 </StyledTableCell>
-                                <StyledTableCell align="center">{getObjectById(row.movieId, movies)?.title}</StyledTableCell>
+                                <StyledTableCell align="center">{getObjectById(row.idMovie, movies)?.name}</StyledTableCell>
                                 <StyledTableCell align="center">{row.trailerURL}</StyledTableCell>
                                 <StyledTableCell align="center">
                                     <Button onClick={() => handleEdit(row)} variant="contained"><FaEdit /></Button>

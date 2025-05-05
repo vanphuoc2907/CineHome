@@ -7,9 +7,6 @@ import {
   DialogContent,
   DialogTitle,
   FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
   Autocomplete,
 } from "@mui/material";
 import { addDocument, updateDocument } from "../../../../services/firebaseService";

@@ -63,6 +63,7 @@ function TableEpisode({ setEpisode, episode, handleEdit, search, setPage, page }
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage
     );
+    
 
     return (
         <div className='p-5'>
@@ -84,7 +85,7 @@ function TableEpisode({ setEpisode, episode, handleEdit, search, setPage, page }
                                     {page * 5 + index + 1}
                                 </StyledTableCell>
                                 <StyledTableCell align="center">{row.episodesNumber}</StyledTableCell>
-                                <StyledTableCell align="center">{row.episodeURL}</StyledTableCell>
+                                <StyledTableCell align="center">{truncate(row.episodeURL)}</StyledTableCell>
                                 <StyledTableCell align="center">{getObjectById(row.idMovie, movies)?.name}</StyledTableCell>
                                 <StyledTableCell align="center">
                                     <Button onClick={() => handleEdit(row)} variant="contained"><FaEdit /></Button>

@@ -1,9 +1,8 @@
 import React, { useState }  from 'react';
 import HeaderMain from '../../../../components/admin/HeaderMain';
-import TableTrailer from './TableTrailer';
 import ModalTrailer from './ModalTrailer';
-
-const inner = {movieId :"", trailerURL :"", };
+import TableTrailer from "./TableTrailer";
+const inner = {idMovie :"", trailerURL :"" };
 function Trailers(props) {
     const [page, setPage] = useState(0);
     const [trailer,setTrailer] = useState(inner);
@@ -18,8 +17,9 @@ function Trailers(props) {
     const handleClose = () => setOpen(false);
     const validation = () => {
         const newError = {};
-        newError.movieId = trailer.movieId ? "" : "please enter movieId" ;
+        newError.idMovie = trailer.idMovie ? "" : "please enter idMovie" ;
         newError.trailerURL = trailer.trailerURL ? "" : "please enter trailerURL" ;
+        
         setError(newError);
        return Object.values(newError).every(e => e === "");
     }

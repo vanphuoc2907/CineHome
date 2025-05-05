@@ -11,8 +11,8 @@ function MovieRent(props) {
     return (
         <div>
             <SlideHome data={getMovieRent(movies,plans,4).slice(0,10)}/>
-            <SlideMovie data={getMovieRent(movies,plans,4)} title={"Luật Chơi Giới Tài Phiệt"}/>
-            <SlideMovie data={getMovieRent(movies,plans,4)} title={"Phim Moi"}/>
+            <SlideMovie data={getMovieRent(movies,plans,4)} title={"Phim Hành ĐỘng"}/>
+            <SlideMovie data={getMovieRent(movies,plans,4)} title={"Phim Mới"}/>
         </div>
     );
 }

@@ -29,7 +29,7 @@ function Plan(props) {
                     ))
                 }        
             </div>
-             {plan && <div className='text-center mt-5'><Link to={`/payment/${plan}`} className='px-28 py-2 text-white rounded-full bg-blue-600'>Tiep tuc</Link></div> }   
+             {plan && <div className='text-center mt-5'><Link to={`/payment/${plan}`} className='px-28 py-2 text-white rounded-full bg-blue-600'>Tiếp tục</Link></div> }   
         </div>
     );
 }

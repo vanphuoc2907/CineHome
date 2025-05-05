@@ -9,6 +9,7 @@ import { FaPlayCircle } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import { truncate } from '../../../utils/FunctionContants';
 
 function SlideVip({ data, title }) {
     return (
@@ -54,7 +55,7 @@ function SlideVip({ data, title }) {
                                     <h1 className="text-sm text-white font-bold">{element.name}</h1>
                                 </div>
                                 <div className="flex ms-2">
-                                    <h1 className="text-sm text-white">vfbfdbdfbfdb</h1>
+                                    <h1 className="text-sm text-white">{truncate(element.description)}</h1>
                                 </div>
                             </div>
                         </div>

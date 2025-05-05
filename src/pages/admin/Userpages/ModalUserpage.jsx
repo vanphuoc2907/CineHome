@@ -9,64 +9,87 @@ import {
 } from "@mui/material";
 import { addDocument, updateDocument } from "../../../services/firebaseService";
 import { useNotification } from "../../../context/NotificationProvider";
-function ModalCategory({ handleClose, open, category, setCategory, validation, error }) {
+function ModalUserpage({ handleClose, open, userpage, setUserpage, validation, error }) {
      const showNotification = useNotification();
     const handleInput = (e) => {
         const { name, value } = e.target;
-        setCategory({...category, [name] : value});
+        setUserpage({...userpage, [name] : value});
     };
-   const addCategory = async ()  => {
+   const addUserpage = async ()  => {
        if(!validation()) {
          return ;
        }
-       if(category.id) {
-        await updateDocument("Categories", category);
-         showNotification("Categories updated successfully!", "info");
+       if(userpage.id) {
+        await updateDocument("Userpages", userpage);
+         showNotification("Userpages updated successfully!", "info");
        }else {
-        await addDocument("Categories", category);
-        showNotification("Categories added successfully!", "success");
+        await addDocument("Userpages", userpage);
+        showNotification("Userpages added successfully!", "success");
        }
         handleClose();
    }
 
     return (
       <Dialog open={open} onClose={handleClose}>
-      <DialogTitle>{category.id ? "Edit Category" : "Add Category" }</DialogTitle>
+      <DialogTitle>{userpage.id ? "Edit Userpage" : "Add Userpage" }</DialogTitle>
       <DialogContent>
         <TextField
           autoFocus
           margin="dense"
-          label="Name"
+          label="Email"
           type="text"
           fullWidth
-          name="name"
-          value={category.name}
+          name="email"
+          value={userpage.email}
           onChange={handleInput}
-          error={!!error.name}
-          helperText={error.name}
+          error={!!error.email}
+          helperText={error.email}
         />
         <TextField
           margin="dense"
-          label="Description"
+          label="Password"
           type="text"
           fullWidth
           multiline
-          name="description"
-          rows={4}
-          value={category.description}
+          name="password"
+          value={userpage.password}
           onChange={handleInput}
-          error={!!error.description}
-          helperText={error.description}
+          error={!!error.password}
+          helperText={error.password}
+        />
+         <TextField
+          margin="dense"
+          label="Role"
+          type="text"
+          fullWidth
+          multiline
+          name="role"
+          value={userpage.role}
+          onChange={handleInput}
+          error={!!error.role}
+          helperText={error.role}
+        />
+         <TextField
+          margin="dense"
+          label="Username"
+          type="text"
+          fullWidth
+          multiline
+          name="username"
+          value={userpage.dusername}
+          onChange={handleInput}
+          error={!!error.username}
+          helperText={error.username}
         />
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
-        <Button onClick={addCategory} variant="contained">
-           {category.id ? "Update" : "Save" }
+        <Button onClick={addUserpage} variant="contained">
+           {userpage.id ? "Update" : "Save" }
         </Button>
       </DialogActions>
     </Dialog>
     );
 }
 
-export default ModalCategory;
+export default ModalUserpage;

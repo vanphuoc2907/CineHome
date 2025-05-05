@@ -4,6 +4,13 @@ import { Modal, Box, Typography, TextField, Button, IconButton, InputAdornment }
 import { ContextAccounts } from "../../../context/AccountProvider";
 import { ContextAuth } from "../../../context/AuthProvider";
 import { useNotification } from "../../../context/NotificationProvider";
+import { signInWithPopup } from "firebase/auth";
+import { auth, googleProvider } from "../../../config/firebaseConfig";
+import { addDocument } from "../../../services/firebaseService";
+import { useNavigate } from "react-router-dom";
+import { ROLES } from "../../../utils/Constants";
+import ForgotPassword from "./ForgotPassword";
+
 const inner = { useroremail: "", pass: '' }
 const LoginModal = ({ openLogin, handleCloseLogin, handleOpenSignUp }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -11,9 +18,10 @@ const LoginModal = ({ openLogin, handleCloseLogin, handleOpenSignUp }) => {
   const [error, setError] = useState(inner);
   const accounts = useContext(ContextAccounts);
   const showNotification = useNotification();
+  const [forgot,setForGot] = useState(false);
   const { accountLogin, saveLocal } = useContext(ContextAuth);
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
-
+  const navigate = useNavigate();
   const handleInput = (e) => {
     const { name, value } = e.target;
     setLogin({ ...login, [name]: value });
@@ -40,9 +48,39 @@ const LoginModal = ({ openLogin, handleCloseLogin, handleOpenSignUp }) => {
     showNotification("Log in successfully","success");
     handleCloseLogin();
   }
+
+  // Google sign-in
+  const signInWithGoogle = async () => {
+    try {
+        const result = await signInWithPopup(auth, googleProvider);
+        const user = result.user;
+        const existingCustomer = accounts.find(customer => customer.email === user.email);
+        let loggedInCustomer;
+
+        if (!existingCustomer) {
+            const newCustomer = {
+                username: user.displayName,
+                imgUrl:  user.photoURL,
+                role: ROLES.USER,
+                email : user.email
+            };
+            const account =  await addDocument('Accounts', newCustomer);
+            loggedInCustomer = account;
+        } else {
+            loggedInCustomer = existingCustomer;
+        }
+        saveLocal("accountLogin", loggedInCustomer);
+        showNotification('Login successfully!',"success");
+        handleCloseLogin();
+        navigate("/");
+    } catch (error) {
+      
+    }
+};
+
   return (
     <Modal open={openLogin} onClose={handleCloseLogin}>
-      <Box
+     {forgot ? <ForgotPassword setForGot={setForGot} /> : <Box
         sx={{
           position: "absolute",
           top: "50%",
@@ -116,7 +154,7 @@ const LoginModal = ({ openLogin, handleCloseLogin, handleOpenSignUp }) => {
           }}
         />
 
-        <Typography variant="body2" color="primary" textAlign="right" mt={1}>
+        <Typography onClick={() => setForGot(true)} variant="body2" color="primary" textAlign="right" mt={1}>
           Forgot password?
         </Typography>
 
@@ -140,6 +178,7 @@ const LoginModal = ({ openLogin, handleCloseLogin, handleOpenSignUp }) => {
         <Button
           fullWidth
           variant="contained"
+          onClick={signInWithGoogle}
           sx={{
             background: "linear-gradient(to right, #FF5733, #FFD700, #4CAF50)",
             color: "#fff",
@@ -160,7 +199,8 @@ const LoginModal = ({ openLogin, handleCloseLogin, handleOpenSignUp }) => {
             Privacy Policy
           </Typography>.
         </Typography>
-      </Box>
+      </Box> }
+      
     </Modal>
   );
 };

@@ -1,10 +1,11 @@
 import React, { createContext, useEffect, useState } from 'react';
 import CryptoJS from "crypto-js";
 import { ROLES, SECRET_KEY } from "../utils/Constants";
+import { useNavigate } from 'react-router-dom';
 export const ContextAuth = createContext();
 function AuthProvider({ children }) {
     const [accountLogin, setAccountLogin] = useState(null);
-
+    const navigate = useNavigate();
 
     useEffect(() => {
      setAccountLogin(getLocal("accountLogin"));
@@ -39,6 +40,7 @@ function AuthProvider({ children }) {
  const logout = () => {
      setAccountLogin(null);
      localStorage.removeItem("accountLogin");
+     navigate("/");
  }
     return (
         <ContextAuth.Provider value={{ accountLogin , saveLocal, logout }}>

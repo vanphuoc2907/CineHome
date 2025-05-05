@@ -6,6 +6,7 @@ import { Button } from '@mui/material';
 import { ContextMovies } from '../../../context/MovieProvider';
 import SlideMovie from '../Slidedshow/SlideMovie';
 import { ContextCategories } from '../../../context/CategoryProvider';
+import { updateDocument } from '../../../services/firebaseService';
 function PlayMovie(props) {
     const { id } = useParams();
     const episodes = useContext(ContextEpisodes);
@@ -19,6 +20,27 @@ function PlayMovie(props) {
         setPlayMovie(list[0]);
     }, [episodes, id]);
 
+   useEffect(() =>  {
+     plusViews();
+   },[playMovie]);
+
+
+   const plusViews = async () => {
+    const movie = getObjectById(id, movies);
+  
+    if (!movie) {
+      console.error("Movie not found");
+      return;
+    }
+  
+    const updatedViews = (movie.viewsCount || 0) + 1;
+  
+    await updateDocument("Movies", {
+      id: id,
+      viewsCount: updatedViews,
+    });
+  };
+
     const movieByActorOrCharacter = () => {
         // Lấy bộ phim dựa vào ID
         const selectedMovie = getObjectById(id, movies);
@@ -28,13 +50,15 @@ function PlayMovie(props) {
           movie.id !== selectedMovie.id &&
           (
             // Kiểm tra nếu có diễn viên trùng nhau
-            movie.listActor.some((actor) => selectedMovie.listActor.includes(actor)) ||
+            movie.listActor?.some((actor) => selectedMovie.listActor.includes(actor)) ||
             
             // Kiểm tra nếu có thể loại trùng nhau
-            movie.listCate.some((cate) => selectedMovie.listCate.includes(cate))
+            movie.listCate?.some((cate) => selectedMovie.listCate.includes(cate))
           )
         );
       };
+
+
     return (
         <div className='p-16'>
             <div className='w-[80vw] m-auto'>
@@ -56,7 +80,7 @@ function PlayMovie(props) {
                     }
                 </div>
             </div>
-            <SlideMovie title={"Phim lien quan"} data={movieByActorOrCharacter()} />
+            <SlideMovie title={"Phim Liên Quan"} data={movieByActorOrCharacter()} />
         </div>
     );
 }

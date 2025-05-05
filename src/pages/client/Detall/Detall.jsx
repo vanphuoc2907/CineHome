@@ -58,8 +58,9 @@ function Detall(props) {
                                     <Link to={`/playmovie/${movieDetail?.id}`}>
                                         <button className='bg-red-600 p-4 rounded-lg flex items-center gap-3'><FaCirclePlay /> Xem phim</button>
                                     </Link>
-
+                                     <Link to={`/playtrailer/${movieDetail?.id}`}>
                                     <button className='bg-slate-500 p-4 rounded-lg ml-5 flex items-center gap-3'><IoLogoPlaystation /> Trailler</button>
+                                     </Link>
                                 </div>
                             </div>
                         </div>
@@ -94,7 +95,7 @@ function Detall(props) {
                 </div>
                 <div className="col-span-1">
                     <h1 className='text-3xl text-yellow-400 font-semibold flex items-center gap-3'><FaRegStar /> TOP BẢNG XẾP HẠNG</h1>
-                    {getMovieRent(movies, plans, 4).slice(0,6).map((e, i) => (
+                    {movies.sort((a,b) => b.viewsCount - a.viewsCount).slice(0,6).map((e, i) => (
                         <div className='flex mt-3 gap-3 border-b border-white pb-3'>
                             <div className='w-20'>
                                 <img src={e.imgUrl} alt="" />
@@ -102,7 +103,7 @@ function Detall(props) {
                             <div className='flex-1 text-white'>
                                 <h1 className='text-1xl  font-semibold'>{e.name}</h1>
                                 <p>{truncate2(e.description)}</p>
-                                <p className='flex items-center gap-3'><CiHeart /> Lượt thích <IoEyeSharp /> 3.000.000 lượt xem</p>
+                                <p className='flex items-center gap-3'><CiHeart /> Lượt thích <IoEyeSharp /> {e.viewsCount} lượt xem</p>
                             </div>
                         </div>
                     ))}

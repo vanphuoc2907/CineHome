@@ -40,7 +40,7 @@ function MenuAdmin(props) {
                 ))
             }
            {show && <h1 className='py-2'>PAGES</h1> } 
-            <li className='flex my-2 items-center gap-2 p-2 bg-red-300 hover:bg-red-500 hover:text-white rounded-md'><FaUserAstronaut /> {show && <span>User Pages</span> }</li>
+          <Link to={"/userpages"}>  <li className='flex my-2 items-center gap-2 p-2 bg-red-300 hover:bg-red-500 hover:text-white rounded-md'><FaUserAstronaut /> {show && <span>User Pages</span> }</li> </Link>
             </div>
         </div>
     );

@@ -60,7 +60,7 @@ function ModalTrailer({ handleClose, open, trailer, setTrailer, validation, erro
                         });
                       }}
                       isOptionEqualToValue={(option, value) => option.id === value.id} // So sánh giá trị
-                      noOptionsText="Không tìm thấy kết quả" // Thông báo khi không có kết quả
+                      noOptionsText="No results found" // Thông báo khi không có kết quả
                       fullWidth
                     />
         </FormControl>
@@ -77,13 +77,13 @@ function ModalTrailer({ handleClose, open, trailer, setTrailer, validation, erro
           helperText={error.trailerURL}
         />
       </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose}>Cancel</Button>
-        <Button onClick={addTrailer} variant="contained">
-          {trailer.id ? "Update" : "Save"}
-        </Button>
-      </DialogActions>
-    </Dialog>
+       <DialogActions>
+             <Button onClick={handleClose}>Cancel</Button>
+             <Button onClick={addTrailer} variant="contained">
+               {trailer.id ? "Update" : "Save"}
+             </Button>
+           </DialogActions>
+         </Dialog>
   );
 }
 

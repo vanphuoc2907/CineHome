@@ -13,9 +13,9 @@ function MovieStore(props) {
         <div>
             <SlideStore data={getMovieRent(data,plans,2)}/>
             <SlideMovie data={data} title={"Phim Mới"}/>
-            <SlideMovie data={data} title={"Phim Ngay"}/>
-            <SlideVip data={getMovieRent(data,plans,3)} title={"Phim Thinh Hành"}/>
-            <SlideMovie data={data} title={"Luật Chơi Giới Tài Phiệt"}/>
+            <SlideMovie data={getMovieRent(data,plans,1)} title={"Phim Hay"}/>
+            <SlideVip data={getMovieRent(data,plans,3)} title={"Phim Thịnh Hành"}/>
+            <SlideMovie data={data} title={"Phim Hành Động"}/>
              <SlideAdvertisement />
             <SlideVip data={getMovieRent(data,plans,4)} title={"Phim Siêu vip"}/>
         </div>

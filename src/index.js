@@ -18,6 +18,11 @@ import { TrailersProvider } from './context/TrailerProvider';
 import { AccountsProvider } from './context/AccountProvider';
 import AuthProvider from './context/AuthProvider';
 import { UserpagesProvider } from './context/UserpageProvider';
+import { FavoritesProvider } from './context/FavoritesProvider';
+import { LoginProvider } from './context/LoginProvider';
+import { RentMoviesProvider } from './context/RentMovieProvider';
+import { SubscriptionsProvider } from './context/SubscriptionsProvider';
+import { MessagesProvider } from './context/MessProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -37,7 +42,18 @@ root.render(
                             <AccountsProvider>
                               <AuthProvider>
                                 <UserpagesProvider>
-                                  <App />
+                                  <FavoritesProvider>
+                                    <LoginProvider>
+                                      <RentMoviesProvider>
+                                        <SubscriptionsProvider>
+                                          <MessagesProvider>
+                                            <App />
+
+                                          </MessagesProvider>
+                                        </SubscriptionsProvider>
+                                      </RentMoviesProvider>
+                                    </LoginProvider>
+                                  </FavoritesProvider>
                                 </UserpagesProvider>
                               </AuthProvider>
                             </AccountsProvider>
